@@ -1,12 +1,10 @@
 package ir.soroushtabesh.tetris.controllers;
 
+import ir.soroushtabesh.tetris.utils.ResourcePool;
 import ir.soroushtabesh.tetris.views.GameFrame;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
 public class GameLoader {
     private static GameLoader gameLoader;
@@ -56,7 +54,7 @@ public class GameLoader {
     private void showLoading() {
         loadingFrame = new JFrame();
         loadingFrame.setUndecorated(true);
-        loadingFrame.setLocationRelativeTo(null);
+//        loadingFrame.setLocationRelativeTo(null);
         loadingFrame.setLocationByPlatform(true);
         loadingFrame.setPreferredSize(new Dimension(100, 100));
         loadingFrame.setLayout(new BorderLayout());
@@ -65,20 +63,15 @@ public class GameLoader {
         pic.setFont(new Font("Monospaced", Font.PLAIN, 24));
 
         resourceLoader = new Thread(() -> {
-            try {
-                ImageIcon icon = new ImageIcon(ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader()
-                        .getResourceAsStream("tetris_logo.png"))));
-                pic.setIcon(icon);
-                loadingFrame.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-                loadingFrame.setBackground(new Color(0, 0, 0, 0));
-                loadingFrame.pack();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ImageIcon icon = ResourcePool.getInstance().getLoadingImage();
+            pic.setIcon(icon);
+            loadingFrame.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+            loadingFrame.setBackground(new Color(0, 0, 0, 0));
+            loadingFrame.pack();
         });
         resourceLoader.start();
 
-        loadingFrame.add(pic);
+        loadingFrame.add(pic, BorderLayout.CENTER);
         loadingFrame.setAlwaysOnTop(true);
         loadingFrame.pack();
         loadingFrame.setVisible(true);
