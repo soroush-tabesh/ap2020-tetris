@@ -8,11 +8,12 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         super();
-        setOpaque(true);
+        setOpaque(false);
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        //super.paintComponent(g);
+        super.paintComponent(g);
     }
 }

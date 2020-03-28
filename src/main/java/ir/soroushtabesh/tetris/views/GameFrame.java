@@ -17,15 +17,14 @@ public class GameFrame extends JFrame {
         super("Tetris (Soroush Tabesh)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-//        setLocationRelativeTo(null);
         setMinimumSize(new Dimension(400, 600));
         setLayout(null);
         menuPanel = new MenuPanel();
         gamePanel = new GamePanel();
         backgroundPanel = new BackgroundPanel();
-        add(menuPanel);
+        //add(menuPanel);
         add(gamePanel);
-        add(backgroundPanel);
+        //add(backgroundPanel);
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
@@ -39,6 +38,7 @@ public class GameFrame extends JFrame {
                 backgroundPanel.setSize(getSize());
             }
         });
+        pack();
     }
 
     public void expose() {
