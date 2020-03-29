@@ -29,6 +29,13 @@ public class GameFrame extends JFrame {
 
     private void initControllers() {
         //todo
+        gameController = GameController.getInstance();
+        gameController.initiateGameState();
+        // getBoardSize();
+    }
+
+    private void getBoardSize() {
+        //todo
     }
 
     private void initListeners() {
@@ -48,7 +55,7 @@ public class GameFrame extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                //todo: handle keys
+                gameController.keyPressed(e);
             }
         });
 

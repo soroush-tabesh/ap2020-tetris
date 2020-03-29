@@ -30,7 +30,7 @@ public class GamePanel extends JPanel {
         add(SwingUtils.wrapInMargin(getBoardPanel(), Constants.GAME_BOARD_MARGIN));
     }
 
-    private BoardPanel getBoardPanel() {
+    public BoardPanel getBoardPanel() {
         if (boardPanel == null) {
             boardPanel = new BoardPanel();
         }
