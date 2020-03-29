@@ -23,7 +23,17 @@ public class GameLoader {
         return gameLoader;
     }
 
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
     public void start() {
+        try {
+            UIManager.setLookAndFeel(
+                    UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         showLoading();
         SwingUtilities.invokeLater(() -> {
             gameFrame = new GameFrame();
@@ -35,8 +45,10 @@ public class GameLoader {
         if (loadingFrame != null) {
             Thread hiderThread = new Thread(() -> {
                 try {
-                    timerThread.join();
-                    resourceLoader.join();
+                    if (timerThread != null)
+                        timerThread.join();
+                    if (resourceLoader != null)
+                        resourceLoader.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

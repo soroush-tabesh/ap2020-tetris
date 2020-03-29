@@ -1,18 +1,18 @@
 package ir.soroushtabesh.tetris.views;
 
+import ir.soroushtabesh.tetris.utils.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class BackgroundPanel extends JPanel {
 
-    private static final float HUE_MIN = 0.2f;
-    private static final float HUE_MAX = 0.8f;
     private final Timer timer;
-    private float hue = HUE_MIN;
+    private float hue = 0.4f;
     private Color color1 = Color.white;
     private Color color2 = Color.black;
-    private float delta = 0.0007f;
+    private float delta = Constants.BG_DELTA;
     private float theta = 0;
 
     public BackgroundPanel() {
@@ -25,17 +25,16 @@ public class BackgroundPanel extends JPanel {
     private void onTimerCycle(ActionEvent evt) {
         hue += delta;
         theta += 15f * delta;
-        if (hue > HUE_MAX) {
-            hue = HUE_MAX;
+        if (hue > Constants.BG_HUE_MAX) {
+            hue = Constants.BG_HUE_MAX;
             delta = -delta;
         }
-        if (hue < HUE_MIN) {
-            hue = HUE_MIN;
+        if (hue < Constants.BG_HUE_MIN) {
+            hue = Constants.BG_HUE_MIN;
             delta = -delta;
         }
         color1 = Color.getHSBColor(hue, 1, 1);
         color2 = Color.getHSBColor(hue, 3f / 4 + delta, 3f / 4 + delta);
-        //todo remove repaint
         repaint();
     }
 

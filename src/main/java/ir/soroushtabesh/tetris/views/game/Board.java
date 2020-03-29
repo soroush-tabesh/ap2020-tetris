@@ -1,7 +1,41 @@
 package ir.soroushtabesh.tetris.views.game;
 
-import javax.swing.*;
+import ir.soroushtabesh.tetris.controllers.GameController;
+import ir.soroushtabesh.tetris.models.Game;
+import ir.soroushtabesh.tetris.utils.Constants;
+import ir.soroushtabesh.tetris.views.JPanelAspect;
 
-public class Board extends JPanel {
+import java.awt.*;
+
+public class Board extends JPanelAspect {
     //grid layout containing Blocks
+
+    int width;
+    int height;
+    private Block[][] blocks;
+
+    public Board() {
+        super(new GridLayout(GameController.getInstance().getBoardHeight()
+                , GameController.getInstance().getBoardWidth()));
+        width = GameController.getInstance().getBoardWidth();
+        height = GameController.getInstance().getBoardHeight();
+        blocks = new Block[height][width];
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; j++) {
+                blocks[i][j] = new Block(i + "," + j);
+                add(blocks[i][j]);
+            }
+        }
+    }
+
+    public void boardUpdate(Game game) {
+        int colorNum, colorListSize = Constants.COLOR_LIST.length;
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; j++) {
+                colorNum = game.getBlockState(j, i).getColorNum();
+                colorNum = (colorNum % (colorListSize - 1)) + 1;
+                blocks[i][j].setColor(Constants.COLOR_LIST[colorNum]);
+            }
+        }
+    }
 }

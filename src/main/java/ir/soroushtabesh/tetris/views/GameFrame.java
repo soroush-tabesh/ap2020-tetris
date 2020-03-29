@@ -1,11 +1,11 @@
 package ir.soroushtabesh.tetris.views;
 
+import ir.soroushtabesh.tetris.utils.Constants;
 import ir.soroushtabesh.tetris.views.game.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 
 public class GameFrame extends JFrame {
     //shall contain no layout so we add panels over each other!
@@ -15,16 +15,21 @@ public class GameFrame extends JFrame {
 
     public GameFrame() throws HeadlessException {
         super("Tetris (Soroush Tabesh)");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
-        setMinimumSize(new Dimension(400, 600));
-        setLayout(null);
-        menuPanel = new MenuPanel();
-        gamePanel = new GamePanel();
-        backgroundPanel = new BackgroundPanel();
-        //add(menuPanel);
-        add(gamePanel);
-        //add(backgroundPanel);
+        initFrame();
+        initGUI();
+        initListeners();
+        initControllers();
+
+        pack();
+        setPreferredSize(getSize());
+        setMinimumSize(getSize());
+    }
+
+    private void initControllers() {
+
+    }
+
+    private void initListeners() {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
@@ -38,7 +43,47 @@ public class GameFrame extends JFrame {
                 backgroundPanel.setSize(getSize());
             }
         });
-        pack();
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //todo: handle keys
+            }
+        });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                //todo: save game
+            }
+        });
+    }
+
+    private void initFrame() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setMinimumSize(new Dimension(Constants.WINDOW_MIN_WIDTH, Constants.WINDOW_MIN_HEIGHT));
+        setLayout(null);
+    }
+
+    private void initGUI() {
+        menuPanel = new MenuPanel();
+        gamePanel = new GamePanel();
+        backgroundPanel = new BackgroundPanel();
+        //add(menuPanel);
+        add(gamePanel);
+        add(backgroundPanel);
+    }
+
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public BackgroundPanel getBackgroundPanel() {
+        return backgroundPanel;
+    }
+
+    public MenuPanel getMenuPanel() {
+        return menuPanel;
     }
 
     public void expose() {
