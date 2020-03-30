@@ -12,6 +12,8 @@ public class BoardPanel extends JPanelAspect {
     public BoardPanel() {
         initLayout();
         initGUI();
+        setFocusable(false);
+
     }
 
     private void initGUI() {

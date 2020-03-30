@@ -24,6 +24,7 @@ public class GamePanel extends JPanel {
         layout.setVgap(0);
         layout.setHgap(0);
         setLayout(layout);
+        setFocusable(false);
     }
 
     private void initGUI() {

@@ -37,16 +37,38 @@ public class Block extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        //super.paintComponent(g);
 
         int roundness = (int) (getHeight() * Constants.BLOCK_ROUNDNESS);
+        int dotSize = (int) (getHeight() * Constants.DOT_SIZE_COEFFICIENT);
 
-        //draw round dots
-        g.setColor(color);
-        g.fillRoundRect(0, 0, getWidth(), getHeight(), roundness, roundness);
+        if (Constants.DRAW_BORDER) {
+            //draw bg
+            g.setColor(Constants.BOARD_BORDER_COLOR);
+            g.fillRect(0, 0, getWidth(), getHeight());
 
-        //draw border
-        g.setColor(Constants.BOARD_BORDER_COLOR);
-        g.drawRoundRect(0, 0, getWidth(), getHeight(), roundness, roundness);
+            //draw round base
+            g.setColor(color);
+            g.fillRoundRect(0, 0, getWidth(), getHeight(), roundness, roundness);
+
+            //draw border
+            g.setColor(Constants.BOARD_BORDER_COLOR);
+            g.drawRoundRect(0, 0, getWidth(), getHeight(), roundness, roundness);
+        } else if (Constants.DRAW_DOT) {
+            //draw base
+            g.setColor(color);
+            g.fillRect(0, 0, getWidth(), getHeight());
+
+            g.setColor(Constants.BOARD_BORDER_COLOR);
+            g.fillOval(0, 0, dotSize, dotSize);
+            g.fillOval(0, getHeight(), dotSize, dotSize);
+            g.fillOval(getWidth(), 0, dotSize, dotSize);
+            g.fillOval(getWidth(), getHeight(), dotSize, dotSize);
+
+            if (color != Constants.BOARD_BASE_COLOR) {
+                g.setColor(color);
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        }
     }
 }

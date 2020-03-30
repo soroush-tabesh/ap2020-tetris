@@ -7,13 +7,12 @@ import java.awt.*;
 
 public class LoaderFrame extends JFrame {
 
-    public Thread timerThread;//fixme
-    public Thread resourceLoader;//fixme
+    private Thread timerThread;
+    private Thread resourceLoader;
 
     public LoaderFrame() {
         super();
         setUndecorated(true);
-//        loadingFrame.setLocationRelativeTo(null);
         setLocationByPlatform(true);
         setPreferredSize(new Dimension(100, 100));
         setLayout(new BorderLayout());

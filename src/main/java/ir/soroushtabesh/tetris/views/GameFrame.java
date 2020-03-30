@@ -13,7 +13,7 @@ public class GameFrame extends JFrame {
     private GamePanel gamePanel;
     private BackgroundPanel backgroundPanel;
     private MenuPanel menuPanel;
-    private GameController gameController;//todo
+    private GameController gameController;
 
     public GameFrame() throws HeadlessException {
         super("Tetris (Soroush Tabesh)");
@@ -28,13 +28,16 @@ public class GameFrame extends JFrame {
     }
 
     private void initControllers() {
-        //todo
         gameController = GameController.getInstance();
+        getBoardSize();
         gameController.initiateGameState();
-        // getBoardSize();
     }
 
     private void getBoardSize() {
+        //todo
+    }
+
+    public void showEndOfGame() {
         //todo
     }
 
@@ -61,8 +64,8 @@ public class GameFrame extends JFrame {
 
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e) {
-                //todo: save game
+            public void windowClosing(WindowEvent e) {
+                gameController.saveGame();
             }
         });
     }

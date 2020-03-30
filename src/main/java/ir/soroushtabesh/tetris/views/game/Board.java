@@ -20,6 +20,7 @@ public class Board extends JPanelAspect {
         width = GameController.getInstance().getBoardWidth();
         height = GameController.getInstance().getBoardHeight();
         blocks = new Block[height][width];
+        setFocusable(false);
         initBlocks();
     }
 
@@ -33,7 +34,7 @@ public class Board extends JPanelAspect {
     }
 
     public void boardUpdate(GameState gameState) {
-        int colorNum, colorListSize = Constants.COLOR_LIST.length;
+        int colorNum;
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; j++) {
                 colorNum = gameState.getBlockState(j, i).getColorNum();

@@ -9,6 +9,8 @@ public class BoardSide extends JPanelAspect {
     public BoardSide() {
         super(new GridBagLayout());
         add(new JLabel("salam"));
+        setFocusable(false);
+
     }
 
 }
