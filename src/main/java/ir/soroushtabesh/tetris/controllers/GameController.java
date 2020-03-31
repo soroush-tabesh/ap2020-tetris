@@ -54,6 +54,10 @@ public class GameController {
         return gameController;
     }
 
+    public int getNxtShape() {
+        return nxtShape;
+    }
+
     public int getBoardWidth() {
         return boardWidth;
     }
@@ -98,7 +102,7 @@ public class GameController {
 
     public boolean spawnBlock() {
         blockController = new BlockController(gameState
-                , BlockShape.BLOCK_SHAPES[nxtShape]
+                , nxtShape
                 , getInitialAnchor(), nxtShape);
         gameState.setCurBlockController(blockController);
         nxtShape = random.nextInt(BlockShape.BLOCK_SHAPES.length - 1) + 1;
@@ -120,6 +124,7 @@ public class GameController {
             }
             updateUI();
         }
+        updateUI();
     }
 
     private void decreasePeriod() {
@@ -198,6 +203,12 @@ public class GameController {
                 .getBoardPanel()
                 .getBoard()
                 .boardUpdate(gameState);
+        GameLoader.getInstance()
+                .getGameFrame()
+                .getGamePanel()
+                .getBoardPanel()
+                .getBoardSide()
+                .updateSidePanel(gameState);
     }
 
     public void keyPressed(KeyEvent e) {

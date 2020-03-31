@@ -24,12 +24,18 @@ public class BlockController implements Serializable {
     private Vector2D anchor;
     private int color;
     private boolean isInitiated;
+    private int blockShapeId;
 
-    public BlockController(GameState gameState, BlockShape blockShape, Vector2D anchor, int color) {
+    public BlockController(GameState gameState, int blockShapeId, Vector2D anchor, int color) {
         this.gameState = gameState;
-        this.blockShape = blockShape.clone();
+        this.blockShape = BlockShape.BLOCK_SHAPES[blockShapeId].clone();
         this.anchor = anchor;
         this.color = color;
+        this.blockShapeId = blockShapeId;
+    }
+
+    public int getBlockShapeId() {
+        return blockShapeId;
     }
 
     private void applyToState() {

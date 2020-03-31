@@ -20,6 +20,7 @@ public class ResourcePool {
     private Clip ambientSound;
     private Clip scoreRowSound;
     private Clip scoreSitSound;
+    private ImageIcon[] blockIcons = new ImageIcon[8];
 
     private ResourcePool() {
     }
@@ -52,10 +53,18 @@ public class ResourcePool {
                     getClass().getClassLoader().getResourceAsStream("score_row.wav")));
             scoreSitSound.open(AudioSystem.getAudioInputStream(
                     getClass().getClassLoader().getResourceAsStream("score_sit.wav")));
+            for (int i = 0; i < blockIcons.length; i++) {
+                blockIcons[i] = new ImageIcon(ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader()
+                        .getResourceAsStream(String.format("blocks/block_%d.png", i)))));
+            }
             loaded = true;
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
+    }
+
+    public ImageIcon getBlockIcon(int id) {
+        return blockIcons[id];
     }
 
     public Clip getAmbientSound() {
