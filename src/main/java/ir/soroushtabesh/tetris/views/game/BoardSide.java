@@ -81,7 +81,7 @@ public class BoardSide extends JPanel {
 
     private void updateLeaderBoard(LeaderBoard leaderBoard) {
         StringBuilder message = new StringBuilder("<html>Leader Board<br>");
-        for (int i = 0; i < leaderBoard.getList().length; i++) {
+        for (int i = 0; i < leaderBoard.getList().length - 1; i++) {
             String[] colors = {"rgb(230,191,67)", "rgb(230,230,230)", "rgb(211,127,56)", "rgb(238,224,174)"};
             message.append(String.format("%d. <font color='%s'>%d</font><br>"
                     , i + 1
