@@ -24,18 +24,6 @@ public class Board extends JPanelAspect {
         initBlocks();
     }
 
-    public int getM_width() {
-        return m_width;
-    }
-
-    public int getM_height() {
-        return m_height;
-    }
-
-    public Block getBlock(int i, int j) {
-        return blocks[i][j];
-    }
-
     private void initBlocks() {
         for (int i = 0; i < m_height; ++i) {
             for (int j = 0; j < m_width; j++) {

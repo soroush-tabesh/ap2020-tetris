@@ -69,10 +69,6 @@ public class GameState implements Serializable {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public boolean isGameOver() {
         return gameOver;
     }

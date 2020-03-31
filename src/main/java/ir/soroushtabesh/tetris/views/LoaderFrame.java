@@ -52,15 +52,15 @@ public class LoaderFrame extends JFrame {
     private void getBoardSize() {
         String width = "0";
         while (width == null || Integer.parseInt(width) < 6 || Integer.parseInt(width) > 20)
-            System.out.println((width = JOptionPane.showInputDialog(
+            width = JOptionPane.showInputDialog(
                     "Enter width: (Integer between 6 and 20, 10 is good!)"
-                    , "10")));
+                    , "10");
         String height = "0";
         while (height == null || Integer.parseInt(height) < 15 || Integer
                 .parseInt(height) > 28)
-            System.out.println((height = JOptionPane.showInputDialog(
+            height = JOptionPane.showInputDialog(
                     "Enter height: (Integer between 15 and 28, 18 is good!)",
-                    "18")));
+                    "18");
         GameController gameController = GameController.getInstance();
         gameController.setBoardWidth(Integer.parseInt(width));
         gameController.setBoardHeight(Integer.parseInt(height));

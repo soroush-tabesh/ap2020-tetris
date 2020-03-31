@@ -91,10 +91,6 @@ public class GameController {
         return gameState;
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
-    }
-
     public void initiateGameState(boolean loadFromFile) {
         setRunning(false);
         if (loadFromFile) {

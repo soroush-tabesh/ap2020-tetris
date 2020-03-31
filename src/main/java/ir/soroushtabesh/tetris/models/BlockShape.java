@@ -54,6 +54,11 @@ public class BlockShape implements Cloneable, Serializable {
 
     @Override
     public BlockShape clone() {
+        try {
+            super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         Vector2D[] ngraph = new Vector2D[graph.length];
         for (int i = 0; i < graph.length; i++) {
             ngraph[i] = new Vector2D(graph[i].getX(), graph[i].getY());

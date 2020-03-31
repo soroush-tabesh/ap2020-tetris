@@ -15,12 +15,10 @@ public class Block extends JButton {
         setMargin(new Insets(0, 0, 0, 0));
         setBorder(new EmptyBorder(0, 0, 0, 0));
         setBackground(Constants.BOARD_BORDER_COLOR);
-//        setOpaque(true);
-//        setBackground(new Color(0,0,0,0));
+        setOpaque(false);
         setColor(Constants.COLOR_LIST[0]);
         setFocusPainted(false);
         setFocusable(false);
-
     }
 
     @Override
@@ -37,8 +35,6 @@ public class Block extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
-        //super.paintComponent(g);
-
         int roundness = (int) (getHeight() * Constants.BLOCK_ROUNDNESS);
         int dotSize = (int) (getHeight() * Constants.DOT_SIZE_COEFFICIENT);
 
