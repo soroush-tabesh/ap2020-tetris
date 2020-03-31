@@ -9,7 +9,7 @@ its main method to start the game.
 - Arrow Right and Left for rotations
 - Arrow Down for speeding up
 - Arrow Up for the Regret ability
-- Space and Enter keys are for rotation 
+- Space and Enter keys are for rotations
 
 ## Descriptions
 
