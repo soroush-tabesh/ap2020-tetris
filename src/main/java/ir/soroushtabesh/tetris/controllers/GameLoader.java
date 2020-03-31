@@ -30,11 +30,11 @@ public class GameLoader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new Thread(() -> SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             showLoading();
             gameFrame = new GameFrame();
             hideLoading();
-        })).start();
+        });
     }
 
     private void hideLoading() {

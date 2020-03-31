@@ -8,6 +8,7 @@ import ir.soroushtabesh.tetris.utils.Constants;
 import ir.soroushtabesh.tetris.utils.ResourcePool;
 
 import java.awt.event.KeyEvent;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,8 +29,9 @@ public class GameController {
     private int nxtShape;
 
     private GameController() {
+        gameState = new GameState(getBoardWidth(), getBoardHeight());
         timer = new Timer();
-        random = new Random(System.nanoTime());
+        random = new SecureRandom();
         nxtShape = random.nextInt(BlockShape.BLOCK_SHAPES.length - 1) + 1;
         timer.schedule(new TimerTask() {
             @Override
@@ -64,6 +66,8 @@ public class GameController {
 
     public void setBoardWidth(int boardWidth) {
         this.boardWidth = boardWidth;
+        gameState = new GameState(getBoardWidth(), getBoardHeight());
+
     }
 
     public int getBoardHeight() {
@@ -72,6 +76,7 @@ public class GameController {
 
     public void setBoardHeight(int boardHeight) {
         this.boardHeight = boardHeight;
+        gameState = new GameState(getBoardWidth(), getBoardHeight());
     }
 
     public boolean isRunning() {

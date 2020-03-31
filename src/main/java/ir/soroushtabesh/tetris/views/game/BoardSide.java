@@ -53,6 +53,7 @@ public class BoardSide extends JPanel {
         add(hidden);
         add(leaderLabel);
         add(nxtBlock);
+        setMinimumSize(getSize());
     }
 
     public void updateSidePanel(GameState gameState) {
@@ -91,12 +92,4 @@ public class BoardSide extends JPanel {
         leaderLabel.setText(message.toString());
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        Board board = ((BoardPanel) getParent()).getBoard();
-        int res = board.getBlock(0, 0).getHeight() * board.getM_height();
-        Dimension dimension = super.getPreferredSize();
-        dimension.height = res;
-        return dimension;
-    }
 }

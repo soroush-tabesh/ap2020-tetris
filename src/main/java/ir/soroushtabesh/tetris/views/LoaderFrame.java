@@ -1,5 +1,6 @@
 package ir.soroushtabesh.tetris.views;
 
+import ir.soroushtabesh.tetris.controllers.GameController;
 import ir.soroushtabesh.tetris.utils.ResourcePool;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ public class LoaderFrame extends JFrame {
 
     private Thread timerThread;
     private Thread resourceLoader;
+    private Thread inputThread;
 
     public LoaderFrame() {
         super();
@@ -36,19 +38,32 @@ public class LoaderFrame extends JFrame {
 
     public void showLoading() {
         setVisible(true);
+        getBoardSize();
         timerThread = new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         });
         timerThread.start();
-        getBoardSize();
     }
 
     private void getBoardSize() {
-        //todo
+        String width = "0";
+        while (width == null || Integer.parseInt(width) < 6 || Integer.parseInt(width) > 20)
+            System.out.println((width = JOptionPane.showInputDialog(
+                    "Enter width: (Integer between 6 and 20, 10 is good!)"
+                    , "10")));
+        String height = "0";
+        while (height == null || Integer.parseInt(height) < 15 || Integer
+                .parseInt(height) > 28)
+            System.out.println((height = JOptionPane.showInputDialog(
+                    "Enter height: (Integer between 15 and 28, 18 is good!)",
+                    "18")));
+        GameController gameController = GameController.getInstance();
+        gameController.setBoardWidth(Integer.parseInt(width));
+        gameController.setBoardHeight(Integer.parseInt(height));
     }
 
     public void hideLoading(GameFrame toLoad) {
@@ -58,6 +73,8 @@ public class LoaderFrame extends JFrame {
                     timerThread.join();
                 if (resourceLoader != null)
                     resourceLoader.join();
+                if (inputThread != null)
+                    inputThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

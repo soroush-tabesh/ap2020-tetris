@@ -3,8 +3,8 @@ package ir.soroushtabesh.tetris.utils;
 import java.awt.*;
 
 public class Constants {
-    public static final int WINDOW_MIN_WIDTH = 400;
-    public static final int WINDOW_MIN_HEIGHT = 600;
+    public static final int WINDOW_MIN_WIDTH = 700;
+    public static final int WINDOW_MIN_HEIGHT = 700;
     public static final Insets GAME_BOARD_MARGIN = new Insets(80, 40, 120, 40);
     public static final float BG_HUE_MIN = 0.2f;
     public static final float BG_HUE_MAX = 0.8f;

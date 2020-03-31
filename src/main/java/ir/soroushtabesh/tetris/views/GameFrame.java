@@ -25,9 +25,9 @@ public class GameFrame extends JFrame {
         initListeners();
         initControllers();
 
+        pack();
         setPreferredSize(getSize());
         setMinimumSize(getSize());
-        pack();
     }
 
     private void initControllers() {
