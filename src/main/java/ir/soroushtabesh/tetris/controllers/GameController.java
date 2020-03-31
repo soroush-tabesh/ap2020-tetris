@@ -3,6 +3,7 @@ package ir.soroushtabesh.tetris.controllers;
 import ir.soroushtabesh.tetris.models.BlockShape;
 import ir.soroushtabesh.tetris.models.GameState;
 import ir.soroushtabesh.tetris.models.Vector2D;
+import ir.soroushtabesh.tetris.utils.AudioManager;
 import ir.soroushtabesh.tetris.utils.Constants;
 import ir.soroushtabesh.tetris.utils.ResourcePool;
 
@@ -135,12 +136,16 @@ public class GameController {
 
     private void aceCheck() {
         int r;
+        boolean flag = false;
         while ((r = getFullRow()) >= 0) {
+            flag = true;
             gameState.addCountHidden(1);
             clearRow(r);
             decreasePeriod();
             addScoreAce();
         }
+        if (flag)
+            AudioManager.playScoreRow();
     }
 
     private void clearRow(int row) {
@@ -171,6 +176,7 @@ public class GameController {
     private void endOfRound() {
         aceCheck();
         addScoreRound();
+        AudioManager.playScoreSit();
         if (!spawnBlock()) {
             endOfGame();
         }
@@ -195,8 +201,12 @@ public class GameController {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (!isRunning())
+        if (!isRunning() && e.getKeyCode() == KeyEvent.VK_ENTER) {
             setRunning(true);
+            return;
+        }
+        if (!isRunning())
+            return;
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 handleKeyUp();

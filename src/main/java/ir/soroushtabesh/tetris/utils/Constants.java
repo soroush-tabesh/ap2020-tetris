@@ -29,7 +29,7 @@ public class Constants {
     public static final boolean DRAW_DOT = false;
     public static final float DOT_SIZE_COEFFICIENT = 0.12f;
     public static final int BLOCK_MOVE_PERIOD_INITIAL = 800;
-    public static final int BLOCK_MOVE_PERIOD_DEC = 5;
+    public static final int BLOCK_MOVE_PERIOD_DEC = 3;
     public static final int SCORE_ACE = 10;
     public static final int SCORE_ROUND = 1;
 

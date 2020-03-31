@@ -1,6 +1,7 @@
 package ir.soroushtabesh.tetris.views;
 
 import ir.soroushtabesh.tetris.controllers.GameController;
+import ir.soroushtabesh.tetris.utils.AudioManager;
 import ir.soroushtabesh.tetris.utils.Constants;
 import ir.soroushtabesh.tetris.views.game.GamePanel;
 
@@ -100,6 +101,7 @@ public class GameFrame extends JFrame {
 
     public void expose() {
         setVisible(true);
+        AudioManager.startAmbientSound();
     }
 
 }
