@@ -8,6 +8,7 @@ import ir.soroushtabesh.tetris.utils.ResourcePool;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class BoardSide extends JPanel {
@@ -22,6 +23,8 @@ public class BoardSide extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setFocusable(false);
         setBackground(Constants.BOARD_BASE_COLOR);
+        setBorder(new LineBorder(Constants.BOARD_BORDER_COLOR, 2, false));
+
         initGUI();
     }
 

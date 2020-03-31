@@ -3,6 +3,7 @@ package ir.soroushtabesh.tetris.views;
 import ir.soroushtabesh.tetris.controllers.GameController;
 import ir.soroushtabesh.tetris.utils.AudioManager;
 import ir.soroushtabesh.tetris.utils.Constants;
+import ir.soroushtabesh.tetris.views.game.GameOverPanel;
 import ir.soroushtabesh.tetris.views.game.GamePanel;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class GameFrame extends JFrame {
     private GamePanel gamePanel;
     private BackgroundPanel backgroundPanel;
     private MenuPanel menuPanel;
+    private GameOverPanel gameOverPanel;
     private GameController gameController;
 
     public GameFrame() throws HeadlessException {
@@ -30,16 +32,10 @@ public class GameFrame extends JFrame {
 
     private void initControllers() {
         gameController = GameController.getInstance();
-        getBoardSize();
-        gameController.initiateGameState();
-    }
-
-    private void getBoardSize() {
-        //todo
     }
 
     public void showEndOfGame() {
-        //todo
+        gameOverPanel.showGameOver();
     }
 
     private void initListeners() {
@@ -54,6 +50,7 @@ public class GameFrame extends JFrame {
                 menuPanel.setSize(getSize());
                 gamePanel.setSize(getSize());
                 backgroundPanel.setSize(getSize());
+                gameOverPanel.setSize(getSize());
             }
         });
         addKeyListener(new KeyAdapter() {
@@ -82,8 +79,9 @@ public class GameFrame extends JFrame {
         menuPanel = new MenuPanel();
         gamePanel = new GamePanel();
         backgroundPanel = new BackgroundPanel();
-        //todo:add game over panel
-        //add(menuPanel);
+        gameOverPanel = new GameOverPanel();
+        add(gameOverPanel);
+        add(menuPanel);
         add(gamePanel);
         add(backgroundPanel);
     }
@@ -100,9 +98,14 @@ public class GameFrame extends JFrame {
         return menuPanel;
     }
 
+    public GameOverPanel getGameOverPanel() {
+        return gameOverPanel;
+    }
+
     public void expose() {
         setVisible(true);
         AudioManager.startAmbientSound();
+        requestFocus();
     }
 
 }

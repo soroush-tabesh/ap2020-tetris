@@ -16,6 +16,7 @@ public class LoaderFrame extends JFrame {
         setLocationByPlatform(true);
         setPreferredSize(new Dimension(100, 100));
         setLayout(new BorderLayout());
+        setFocusable(false);
 
         JLabel pic = new JLabel("Loading...");
         pic.setFont(new Font("Monospaced", Font.PLAIN, 24));
@@ -43,6 +44,11 @@ public class LoaderFrame extends JFrame {
             }
         });
         timerThread.start();
+        getBoardSize();
+    }
+
+    private void getBoardSize() {
+        //todo
     }
 
     public void hideLoading(GameFrame toLoad) {

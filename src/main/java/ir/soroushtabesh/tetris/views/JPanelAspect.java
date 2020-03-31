@@ -14,6 +14,7 @@ public class JPanelAspect extends JPanel {
     public JPanelAspect() {
         super();
         setOpaque(false);
+        setFocusable(false);
     }
 
     @Override

@@ -90,14 +90,26 @@ public class GameController {
         this.gameState = gameState;
     }
 
-    public void initiateGameState() {
-//        gameState = new GameState(boardWidth, boardHeight);
-//        spawnBlock();
-        gameState = GameState.loadFromFile();
-        blockController = gameState.getCurBlockController();
-        if (blockController == null) {
+    public void initiateGameState(boolean loadFromFile) {
+        setRunning(false);
+        if (loadFromFile) {
+            gameState = GameState.loadFromFile();
+            if (gameState.isGameOver()
+                    || gameState.getWidth() != getBoardWidth()
+                    || gameState.getHeight() != getBoardHeight()) {
+                initiateGameState(false);
+                return;
+            }
+            blockController = gameState.getCurBlockController();
+            if (blockController == null) {
+                spawnBlock();
+            }
+        } else {
+            gameState = new GameState(boardWidth, boardHeight);
             spawnBlock();
         }
+        setRunning(true);
+        updateUI();
     }
 
     public boolean spawnBlock() {

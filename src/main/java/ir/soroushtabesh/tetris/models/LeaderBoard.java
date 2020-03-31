@@ -28,7 +28,6 @@ public class LeaderBoard implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(leaderBoard.toString());
         return leaderBoard;
     }
 
@@ -37,7 +36,6 @@ public class LeaderBoard implements Serializable {
     }
 
     public void addToList(int num) {
-        System.out.println("LeaderBoard.addToList");
         list[10] = num;
         Arrays.sort(list, (o1, o2) -> -Integer.compare(o1, o2));
         saveList();

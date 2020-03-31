@@ -18,6 +18,7 @@ public class BackgroundPanel extends JPanel {
     public BackgroundPanel() {
         super();
         setOpaque(false);
+        setFocusable(false);
         timer = new Timer(10, this::onTimerCycle);
         timer.start();
     }

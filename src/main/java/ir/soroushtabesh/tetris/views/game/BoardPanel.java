@@ -1,7 +1,9 @@
 package ir.soroushtabesh.tetris.views.game;
 
+import ir.soroushtabesh.tetris.utils.Constants;
 import ir.soroushtabesh.tetris.views.JPanelAspect;
 
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class BoardPanel extends JPanelAspect {
@@ -13,7 +15,7 @@ public class BoardPanel extends JPanelAspect {
         initLayout();
         initGUI();
         setFocusable(false);
-
+        setBorder(new LineBorder(Constants.BOARD_BORDER_COLOR, 5, true));
     }
 
     private void initGUI() {
