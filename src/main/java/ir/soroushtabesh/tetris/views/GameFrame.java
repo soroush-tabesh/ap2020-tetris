@@ -82,6 +82,7 @@ public class GameFrame extends JFrame {
         menuPanel = new MenuPanel();
         gamePanel = new GamePanel();
         backgroundPanel = new BackgroundPanel();
+        //todo:add game over panel
         //add(menuPanel);
         add(gamePanel);
         add(backgroundPanel);

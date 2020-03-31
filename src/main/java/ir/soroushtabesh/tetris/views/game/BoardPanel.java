@@ -18,7 +18,7 @@ public class BoardPanel extends JPanelAspect {
 
     private void initGUI() {
         add(getBoard(), BorderLayout.CENTER);
-//        add(getBoardSide(),BorderLayout.LINE_END);
+        add(getBoardSide(), BorderLayout.EAST);
     }
 
     public Board getBoard() {

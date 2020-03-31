@@ -10,10 +10,12 @@ public class GamePanel extends JPanel {
     //grid bag centered. allowing BoardPanel reach its maximum size. maintaining boardPanel centered.
 
     private BoardPanel boardPanel;
+    private BoardSide boardSide;
 
     public GamePanel() {
         super();
         setOpaque(false);
+        setFocusable(false);
         initLayout();
         initGUI();
     }
@@ -24,11 +26,23 @@ public class GamePanel extends JPanel {
         layout.setVgap(0);
         layout.setHgap(0);
         setLayout(layout);
-        setFocusable(false);
+
+//        GroupLayout layout = new GroupLayout(this);
+//        setLayout(layout);
+//        Component board = SwingUtils.wrapInMargin(getBoardPanel(), Constants.GAME_BOARD_MARGIN);
+//        Component side = SwingUtils.wrapInMargin(getBoardSide(), Constants.GAME_BOARD_MARGIN);
+////        add(board);
+//        layout.setHorizontalGroup(layout.createSequentialGroup()
+//                .addComponent(board)
+//                .addComponent(side));
+//        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                .addComponent(board)
+//                .addComponent(side));
     }
 
     private void initGUI() {
-        add(SwingUtils.wrapInMargin(getBoardPanel(), Constants.GAME_BOARD_MARGIN));
+        Component board = SwingUtils.wrapInMargin(getBoardPanel(), Constants.GAME_BOARD_MARGIN);
+        add(board);
     }
 
     public BoardPanel getBoardPanel() {
